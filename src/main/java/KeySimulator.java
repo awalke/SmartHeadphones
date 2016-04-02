@@ -12,7 +12,7 @@ import java.util.Locale;
 
 
 public class KeySimulator {
-    private int state = 1;
+    private static int state = 0;
 
     private static String OS = System.getProperty("os.name").toLowerCase();
 
@@ -25,20 +25,27 @@ public class KeySimulator {
         }
     }
 
-    public static void switchFocus() {
+    public static void switchFocus(int value) {
         try {
             Robot r = new Robot();
 
-            r.keyPress(KeyEvent.VK_META);
-            r.keyPress(KeyEvent.VK_TAB);
-            r.delay(500);
-            r.keyRelease(KeyEvent.VK_META);
-            r.keyRelease(KeyEvent.VK_TAB);
-            r.delay(1000);
-            r.keyPress(KeyEvent.VK_SPACE);
-            r.keyRelease(KeyEvent.VK_SPACE);
+
+            if (value == 0 && state == 0) {
+                r.keyPress(KeyEvent.VK_SPACE);
+                r.keyRelease(KeyEvent.VK_SPACE);
+                state = 1;
+            }
+            else if (value == 1 && state == 1) {
+                r.keyPress(KeyEvent.VK_SPACE);
+                r.keyRelease(KeyEvent.VK_SPACE);
+                state = 0 ;  
+            }
         } catch(AWTException e) {
             e.printStackTrace();
         }
     }
+
+
+
+
 }
