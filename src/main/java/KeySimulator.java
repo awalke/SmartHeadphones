@@ -38,14 +38,11 @@ public class KeySimulator {
             else if (value == 1 && state == 1) {
                 r.keyPress(KeyEvent.VK_SPACE);
                 r.keyRelease(KeyEvent.VK_SPACE);
-                state = 0 ;  
+                state = 0 ;
             }
         } catch(AWTException e) {
             e.printStackTrace();
         }
     }
-
-
-
 
 }
